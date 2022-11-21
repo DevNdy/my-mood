@@ -1,18 +1,36 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { auth } from "../../../firebase-config";
 import { themeColors } from "../../../theme/theme";
 import InputWithIcon from "../../../ui-reusable/InputWithIcon";
 
 const SignIn = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [messageErr, setMessageErr] = useState<string>("");
+  const refEmail = useRef<HTMLInputElement>(null);
+  const refPassword = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
+  async function handleSubmitSignIn(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    try {
+      await auth.signInWithEmailAndPassword(refEmail.current!.value, refPassword.current!.value);
+      navigate("/home");
+      setMessageErr("");
+    } catch (err) {
+      console.log(err);
+      setMessageErr("Email ou mot de passe invalide.");
+    }
+  }
   return (
-    <SignInStyled>
+    <SignInStyled onSubmit={handleSubmitSignIn}>
       <h2>Accéder à votre profil:</h2>
       <InputWithIcon
         icon={<i className="fa-solid fa-at"></i>}
         type="email"
         txtPlaceHolder="Veuillez entrer votre email.."
-        reference={null}
+        reference={refEmail}
       />
       <InputWithIcon
         icon={
@@ -30,9 +48,10 @@ const SignIn = () => {
         }
         type={passwordVisibility ? "text" : "password"}
         txtPlaceHolder="Entrez votre mot de passe.."
-        reference={null}
+        reference={refPassword}
       />
       <button>Se connecter</button>
+      <p>{messageErr}</p>
     </SignInStyled>
   );
 };
@@ -63,6 +82,12 @@ const SignInStyled = styled.form`
     border: 1px solid black;
     margin-top: 10px;
     cursor: pointer;
+  }
+
+  p {
+    font-size: 13px;
+    color: red;
+    font-style: italic;
   }
 `;
 
