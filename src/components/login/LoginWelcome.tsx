@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { themeColors } from "../../theme/theme";
+import LoginIcons from "./LoginIcons";
+import SocialNetworks from "../../ui-reusable/SocialNetworks";
 
 const LoginWelcome = () => {
   return (
@@ -9,14 +11,9 @@ const LoginWelcome = () => {
         Welcome to <span>MOOD</span>
       </h1>
       <p>Décrivez chaques jours votre humeur, voyez au fil du temps votre état mental...</p>
-      <div>
-        <i className="fa-solid fa-face-angry iAnger"></i>
-        <i className="fa-solid fa-face-sad-tear iSad"></i>
-        <i className="fa-solid fa-face-frown iNotHappy"></i>
-        <i className="fa-solid fa-face-meh iNormal"></i>
-        <i className="fa-solid fa-face-smile iHappy"></i>
-        <i className="fa-solid fa-face-laugh-beam iVeryHappy"></i>
-        <i className="fa-solid fa-face-grin-hearts iLove"></i>
+      <LoginIcons />
+      <div className="networks">
+        <SocialNetworks />
       </div>
     </LoginWelcomeStyled>
   );
@@ -46,51 +43,10 @@ const LoginWelcomeStyled = styled.div`
   p {
     font-size: 19px;
   }
-  i {
-    font-size: 25px;
-    margin: 8px;
-    color: #a0a0a0;
-    transition: 0.3s;
-  }
 
-  .iAnger {
-    &:hover {
-      color: ${themeColors.anger};
-    }
-  }
-
-  .iSad {
-    &:hover {
-      color: ${themeColors.sad};
-    }
-  }
-
-  .iNotHappy {
-    &:hover {
-      color: ${themeColors.notHappy};
-    }
-  }
-
-  .iNormal {
-    &:hover {
-      color: ${themeColors.normal};
-    }
-  }
-  .iHappy {
-    &:hover {
-      color: ${themeColors.happy};
-    }
-  }
-  .iVeryHappy {
-    &:hover {
-      color: ${themeColors.veryHappy};
-    }
-  }
-
-  .iLove {
-    &:hover {
-      color: ${themeColors.love};
-    }
+  .networks {
+    position: fixed;
+    bottom: 10px;
   }
 `;
 

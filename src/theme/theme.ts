@@ -5,9 +5,9 @@ export const themeColors = {
   fond: "#F9FCF8",
   anger: "#950303",
   sad: "#353535",
-  notHappy: "#7e7e7e",
-  normal: "#ffffff",
+  notHappy: "#9a6c3e",
+  normal: "#e7a325",
   happy: "#56a9f1",
-  veryHappy: "#f1f113",
+  veryHappy: "#32bb32",
   love: "#f25f77",
 };
