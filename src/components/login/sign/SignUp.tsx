@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { themeColors } from "../../../theme/theme";
 import InputWithIcon from "../../../ui-reusable/InputWithIcon";
 
 const SignUp = () => {
+  const [passwordVisibilitySignUp, setPasswordVisibility] = useState(false);
   return (
     <SignUpStyled>
       <h2>Créer un profil:</h2>
@@ -20,12 +21,24 @@ const SignUp = () => {
         reference={null}
       />
       <InputWithIcon
-        icon={<i className="fa-solid fa-eye-slash iPassword"></i>}
-        type="password"
+        icon={
+          passwordVisibilitySignUp ? (
+            <i
+              onClick={() => setPasswordVisibility(!passwordVisibilitySignUp)}
+              className="fa-solid fa-eye"
+            ></i>
+          ) : (
+            <i
+              onClick={() => setPasswordVisibility(!passwordVisibilitySignUp)}
+              className="fa-solid fa-eye-slash iPassword"
+            ></i>
+          )
+        }
+        type={passwordVisibilitySignUp ? "text" : "password"}
         txtPlaceHolder="Choisissez votre mot de passe.."
         reference={null}
       />
-      <button>s'inscrire</button>
+      <button>S'inscrire</button>
     </SignUpStyled>
   );
 };
