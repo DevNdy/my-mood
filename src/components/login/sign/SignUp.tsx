@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { themeColors } from "../../../theme/theme";
 import InputWithIcon from "../../../ui-reusable/InputWithIcon";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
-    <SignInStyled>
-      <h2>Accéder à votre profil:</h2>
+    <SignUpStyled>
+      <h2>Créer un profil:</h2>
       <InputWithIcon
         icon={<i className="fa-solid fa-at"></i>}
         type="email"
@@ -14,26 +14,31 @@ const SignIn = () => {
         reference={null}
       />
       <InputWithIcon
-        icon={<i className="fa-solid fa-eye-slash iPassword"></i>}
-        type="password"
-        txtPlaceHolder="Entrez votre mot de passe.."
+        icon={<i className="fa-solid fa-user"></i>}
+        type="text"
+        txtPlaceHolder="Choisissez un pseudo.."
         reference={null}
       />
-      <button>se connecter</button>
-    </SignInStyled>
+      <InputWithIcon
+        icon={<i className="fa-solid fa-eye-slash iPassword"></i>}
+        type="password"
+        txtPlaceHolder="Choisissez votre mot de passe.."
+        reference={null}
+      />
+      <button>s'inscrire</button>
+    </SignUpStyled>
   );
 };
 
-const SignInStyled = styled.form`
+const SignUpStyled = styled.form`
   margin-top: 100px;
   height: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
   h2 {
-    font-size: 28px;
     font-family: "Patrick Hand", cursive;
+    font-size: 28px;
   }
 
   .iPassword {
@@ -53,4 +58,4 @@ const SignInStyled = styled.form`
   }
 `;
 
-export default SignIn;
+export default SignUp;

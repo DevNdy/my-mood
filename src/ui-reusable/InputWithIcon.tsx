@@ -20,7 +20,7 @@ const InputWithIcon = ({ icon, type, txtPlaceHolder, reference }: InputProps) =>
 
 const InputWithIconStyled = styled.div`
   height: 25px;
-  width: 210px;
+  width: 230px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,6 +29,7 @@ const InputWithIconStyled = styled.div`
   margin-top: 15px;
 
   i {
+    width: 30px;
     color: gray;
     margin-right: 10px;
   }
