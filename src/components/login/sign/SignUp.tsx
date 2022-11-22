@@ -101,7 +101,7 @@ const SignUpStyled = styled.form`
   }
 
   p {
-    font-size: 13px;
+    font-size: 15px;
     color: red;
     font-style: italic;
   }
