@@ -1,14 +1,57 @@
-import React from "react";
+import React, { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { themeColors } from "../../theme/theme";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase-config";
+import { AuthContext } from "../../context/AuthContext";
 
-const HomeDescriptionMood = () => {
+interface DescriptionProps {
+  date: string;
+  nbrIconMood: number;
+  txtMood: string;
+}
+
+const HomeDescriptionMood = ({ date, nbrIconMood, txtMood }: DescriptionProps) => {
+  const { currentUser } = useContext(AuthContext);
+  const refDescription = useRef<HTMLInputElement>(null);
+  const [messageErr, setMessageErr] = useState<string>("");
+
+  const generateId = Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16)
+    .substring(1);
+
+  function handleSubmitMood(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    try {
+      setDoc(doc(db, "mood", generateId), {
+        date: date,
+        iconNbr: nbrIconMood,
+        txtMood: txtMood,
+        description: refDescription.current!.value,
+        name: currentUser.displayName,
+        email: currentUser.email,
+      });
+      refDescription.current!.value = "";
+      setMessageErr("Humeur enregistré.");
+    } catch (err) {
+      console.log(err);
+      setMessageErr("une erreur c'est produite...");
+    }
+  }
+
   return (
-    <HomeDescriptionMoodStyled>
+    <HomeDescriptionMoodStyled onSubmit={handleSubmitMood}>
       <div>
-        <input type="text" placeholder="Une phrase pour décrire votre humeur.." />
+        <input
+          type="text"
+          placeholder="Une phrase pour décrire votre humeur.."
+          ref={refDescription}
+          required
+        />
       </div>
       <button>sauvegarder</button>
+      <p>{messageErr}</p>
     </HomeDescriptionMoodStyled>
   );
 };
@@ -40,6 +83,11 @@ const HomeDescriptionMoodStyled = styled.form`
     border: 1px solid black;
     cursor: pointer;
     font-size: 1rem;
+  }
+
+  p {
+    font-size: 15px;
+    color: orange;
   }
 `;
 

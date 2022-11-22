@@ -14,7 +14,7 @@ const HomeMoodDay = () => {
   const options: {} = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
   const [iconMoodSelect, setIconMoodSelect] = useState<IconMoodSelectProps>({
     nbr: 0,
-    txt: "",
+    txt: "--",
     color: "",
   });
 
@@ -45,7 +45,11 @@ const HomeMoodDay = () => {
         }
       />
       <p>{iconMoodSelect.txt}</p>
-      <HomeDescriptionMood />
+      <HomeDescriptionMood
+        date={date.toLocaleDateString("fr-FR", options)}
+        nbrIconMood={iconMoodSelect.nbr}
+        txtMood={iconMoodSelect.txt}
+      />
     </HomeMoodDayStyled>
   );
 };
