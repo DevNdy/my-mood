@@ -1,20 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import { themeColors } from "../../theme/theme";
+import LeftSideMood from "./leftSideMood/LeftSideMood";
+import ListMyMood from "./leftSideMood/ListMyMood";
 
-interface ListMoodProps {
+interface MoodProps {
   openWindow: boolean;
 }
 
-const ListMoodWindow = ({ openWindow }: ListMoodProps) => {
+const MoodWindow = ({ openWindow }: MoodProps) => {
   return (
-    <ListMoodWindowStyled>
-      <div className={`${openWindow ? "windowOpen" : "windowClose"}`}>hello</div>
-    </ListMoodWindowStyled>
+    <MoodWindowStyled>
+      <div className={`${openWindow ? "windowOpen" : "windowClose"}`}>
+        <LeftSideMood />
+      </div>
+    </MoodWindowStyled>
   );
 };
 
-const ListMoodWindowStyled = styled.div`
+const MoodWindowStyled = styled.div`
   .windowOpen {
     position: absolute;
     top: 0;
@@ -24,6 +28,8 @@ const ListMoodWindowStyled = styled.div`
     background-color: ${themeColors.primaryColor};
     z-index: 10;
     transition: 1.5s;
+    display: flex;
+    flex-direction: row;
   }
 
   .windowClose {
@@ -36,7 +42,9 @@ const ListMoodWindowStyled = styled.div`
     z-index: 10;
     opacity: 0.5;
     transition: 2s;
+    display: flex;
+    flex-direction: row;
   }
 `;
 
-export default ListMoodWindow;
+export default MoodWindow;

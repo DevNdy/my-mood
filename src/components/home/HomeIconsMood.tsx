@@ -65,7 +65,7 @@ const HomeIconsMood = ({
 
 const HomeIconsMoodStyled = styled.div`
   i {
-    color: gray;
+    color: #adadad;
     font-size: 40px;
     margin-left: 20px;
     cursor: pointer;
