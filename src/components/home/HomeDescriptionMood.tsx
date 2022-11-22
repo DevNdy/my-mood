@@ -31,9 +31,11 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood }: DescriptionProps) =
         description: refDescription.current!.value,
         name: currentUser.displayName,
         email: currentUser.email,
+        id: generateId,
       });
       refDescription.current!.value = "";
       setMessageErr("Humeur enregistré.");
+      window.location.reload();
     } catch (err) {
       console.log(err);
       setMessageErr("une erreur c'est produite...");

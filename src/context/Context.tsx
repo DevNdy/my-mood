@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, orderBy, query } from "firebase/firestore";
 import { createContext, useEffect, useState } from "react";
 import { db } from "../firebase-config";
 
@@ -23,11 +23,12 @@ export function AppContextProvider({ children }: ChildrenProps) {
 
   const [dataMood, setDataMood] = useState(initialValue.dataMood);
 
-  async function dataFirebase() {
+  function dataFirebase() {
     try {
-      await getDocs(collection(db, "mood")).then((res) =>
-        setDataMood(res.docs.map((doc) => ({ ...doc.data() })))
-      );
+      const q = query(collection(db, "mood"), orderBy("date"));
+      onSnapshot(q, (snapshot) => {
+        setDataMood(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      });
     } catch (err) {
       console.log(err);
     }
