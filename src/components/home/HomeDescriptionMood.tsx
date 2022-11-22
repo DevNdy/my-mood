@@ -20,11 +20,11 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood }: DescriptionProps) =
     .toString(16)
     .substring(1);
 
-  function handleSubmitMood(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmitMood(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     try {
-      setDoc(doc(db, "mood", generateId), {
+      await setDoc(doc(db, "mood", generateId), {
         date: date,
         iconNbr: nbrIconMood,
         txtMood: txtMood,
