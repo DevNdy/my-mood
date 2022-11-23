@@ -1,49 +1,68 @@
-import React, { useContext, useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import React, { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../context/Context";
+import { db } from "../../../firebase-config";
 import { themeColors } from "../../../theme/theme";
 import HomeIconsMood from "../../home/HomeIconsMood";
 
 interface IconMoodEditProps {
   nbr: number;
   txt: string;
-  color: string;
 }
 
 const EditMood = () => {
-  const { openEdit, moodDataSelected } = useContext(AppContext);
+  const { openEdit, setOpenEdit, moodDataSelected } = useContext(AppContext);
   const [iconMoodEdit, setIconMoodEdit] = useState<IconMoodEditProps>({
     nbr: 0,
     txt: "--",
-    color: "",
   });
+  const refDescription = useRef<HTMLInputElement>(null);
 
-  function handleClickEditIconsMood(iSelect: number, txt: string, color: string) {
+  function handleClickEditIconsMood(iSelect: number, txt: string) {
     setIconMoodEdit({
       nbr: iSelect,
       txt: txt,
-      color: color,
     });
     console.log(iconMoodEdit);
+  }
+
+  async function handleSubmitUpdateMood(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    try {
+      await updateDoc(doc(db, "mood", `${moodDataSelected.id}`), {
+        description: refDescription.current!.value,
+        iconNbr: iconMoodEdit.nbr,
+        txtMood: iconMoodEdit.txt,
+      });
+      refDescription.current!.value = "";
+      setIconMoodEdit({
+        nbr: 0,
+        txt: "",
+      });
+      setOpenEdit(!openEdit);
+    } catch (err) {
+      console.log(err);
+    }
+    console.log("is submit");
   }
 
   return (
     <EditMoodStyled>
       <div className={`${openEdit ? "isOpen" : "isClose"}`}>
-        <form>
+        <form onSubmit={handleSubmitUpdateMood}>
           <h3>Editer l'humeur du {moodDataSelected.date}:</h3>
-          <input type="text" placeholder="Changer la phrase.." />
+          <input type="text" placeholder="Changer la phrase.." ref={refDescription} />
           <HomeIconsMood
             iconMoodSelect={iconMoodEdit}
-            onClickAnger={() => handleClickEditIconsMood(1, "En colère", "#950303")}
-            onClickSad={() => handleClickEditIconsMood(2, "Triste", "#353535")}
-            onClickNotHappy={() => handleClickEditIconsMood(3, "Pas content", "#9a6c3e")}
-            onClickNormal={() => handleClickEditIconsMood(4, "Normal", "#e7a325")}
-            onClickHappy={() => handleClickEditIconsMood(5, "Content", "#56a9f1")}
-            onClickVeryHappy={() => handleClickEditIconsMood(6, "Très content", "#32bb32")}
-            onClickVeryLove={() =>
-              handleClickEditIconsMood(7, "Euphorique/Excité/Amoureux", "#f25f77")
-            }
+            onClickAnger={() => handleClickEditIconsMood(1, "En colère")}
+            onClickSad={() => handleClickEditIconsMood(2, "Triste")}
+            onClickNotHappy={() => handleClickEditIconsMood(3, "Pas content")}
+            onClickNormal={() => handleClickEditIconsMood(4, "Normal")}
+            onClickHappy={() => handleClickEditIconsMood(5, "Content")}
+            onClickVeryHappy={() => handleClickEditIconsMood(6, "Très content")}
+            onClickVeryLove={() => handleClickEditIconsMood(7, "Euphorique/Excité/Amoureux")}
             className="iconsStyle"
           />
           <button>Sauvegarder les modifications</button>
