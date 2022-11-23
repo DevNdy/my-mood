@@ -43,6 +43,7 @@ const HomeMoodDay = () => {
         onClickVeryLove={() =>
           handleClickSelectIconsMood(7, "Euphorique/Excité/Amoureux", "#f25f77")
         }
+        className="classNameIcon"
       />
       <p>{iconMoodSelect.txt}</p>
       <HomeDescriptionMood
@@ -79,6 +80,15 @@ const HomeMoodDayStyled = styled.div`
     margin: 15px;
     font-size: 25px;
     font-weight: bold;
+  }
+
+  .classNameIcon {
+    i {
+      color: #adadad;
+      font-size: 40px;
+      margin-left: 20px;
+      cursor: pointer;
+    }
   }
 `;
 
