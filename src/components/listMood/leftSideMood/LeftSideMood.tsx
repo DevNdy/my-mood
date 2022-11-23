@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import EditMood from "./EditMood";
 import ListMyMood from "./ListMyMood";
 
 const LeftSideMood = () => {
@@ -7,6 +8,7 @@ const LeftSideMood = () => {
     <LeftSideMoodStyled>
       <h2>- Toutes mes humeurs -</h2>
       <ListMyMood />
+      <EditMood />
     </LeftSideMoodStyled>
   );
 };

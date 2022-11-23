@@ -6,7 +6,7 @@ import { AppContext } from "../../../context/Context";
 import { db } from "../../../firebase-config";
 import IconsMood from "./IconsMood";
 
-export interface ListMoodProps {
+interface ListMoodProps {
   id: string;
   txtMood: string;
   iconNbr: number;
@@ -17,8 +17,19 @@ export interface ListMoodProps {
 }
 
 const ListMyMood = () => {
-  const { dataMood } = useContext(AppContext);
+  const { dataMood, moodDataSelected, setMoodDataSelected, setOpenEdit, openEdit } =
+    useContext(AppContext);
   const { currentUser } = useContext(AuthContext);
+
+  function handleClickEditMood(date: string, id: string, email: string) {
+    setOpenEdit(!openEdit);
+    setMoodDataSelected({
+      date,
+      id,
+      email,
+    });
+    console.log(moodDataSelected);
+  }
 
   function handleClickDeleteItem(id: string) {
     deleteDoc(doc(db, "mood", `${id}`));
@@ -34,7 +45,10 @@ const ListMyMood = () => {
               {" "}
               <span>{e.date}</span> {e.description}
             </h3>
-            <i className="fa-solid fa-pen iEdit"></i>
+            <i
+              onClick={() => handleClickEditMood(e.date, e.id, e.email)}
+              className="fa-solid fa-pen iEdit"
+            ></i>
             <i
               className="fa-solid fa-trash idelete"
               onClick={() => handleClickDeleteItem(e.id)}
@@ -49,10 +63,11 @@ const ListMyMood = () => {
 };
 
 const ListMyMoodStyled = styled.div`
-  height: 70vh;
+  height: 60vh;
   width: 50vw;
   border-right: 0.5px solid black;
-  margin-top: 30px;
+  margin-top: 10px;
+  overflow-y: scroll;
 
   .divMood {
     display: flex;

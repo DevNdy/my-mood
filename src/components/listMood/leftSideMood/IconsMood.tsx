@@ -27,8 +27,8 @@ const IconsMood = ({ data }: any) => {
 
 const IconsMoodStyled = styled.div`
   i {
-    font-size: 25px;
-    margin-left: 10px;
+    font-size: 28px;
+    margin: 5px 0 0 10px;
   }
 `;
 

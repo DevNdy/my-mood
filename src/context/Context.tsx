@@ -8,15 +8,32 @@ interface ChildrenProps {
 
 type ContextType = {
   dataMood: any;
+  moodDataSelected: {
+    date: string;
+    id: string;
+    email: string;
+  };
+  setMoodDataSelected: (newSate: any) => void;
+  openEdit: boolean;
+  setOpenEdit: (newState: boolean) => void;
 };
 
 const initialValue = {
   dataMood: [{}],
+  moodDataSelected: {
+    date: "",
+    id: "",
+    email: "",
+  },
+  setMoodDataSelected: () => {},
+  openEdit: false,
+  setOpenEdit: () => {},
 };
 
 export const AppContext = createContext<ContextType>(initialValue);
 
 export function AppContextProvider({ children }: ChildrenProps) {
+  //data firebase:
   useEffect(() => {
     dataFirebase();
   }, []);
@@ -34,5 +51,17 @@ export function AppContextProvider({ children }: ChildrenProps) {
     }
   }
 
-  return <AppContext.Provider value={{ dataMood }}>{children}</AppContext.Provider>;
+  //moodDataSelected:
+  const [moodDataSelected, setMoodDataSelected] = useState(initialValue.moodDataSelected);
+
+  //openEdit
+  const [openEdit, setOpenEdit] = useState<boolean>(initialValue.openEdit);
+
+  return (
+    <AppContext.Provider
+      value={{ dataMood, moodDataSelected, setMoodDataSelected, openEdit, setOpenEdit }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 }
