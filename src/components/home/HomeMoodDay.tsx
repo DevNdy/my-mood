@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { AppContext } from "../../context/Context";
 import HomeDescriptionMood from "./HomeDescriptionMood";
 import HomeIconsMood from "./HomeIconsMood";
 
@@ -10,8 +11,7 @@ export interface IconMoodSelectProps {
 }
 
 const HomeMoodDay = () => {
-  const date = new Date();
-  const options: {} = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
+  const { dateOfDay } = useContext(AppContext);
   const [iconMoodSelect, setIconMoodSelect] = useState<IconMoodSelectProps>({
     nbr: 0,
     txt: "--",
@@ -30,7 +30,7 @@ const HomeMoodDay = () => {
   return (
     <HomeMoodDayStyled>
       <h3>
-        Humeur du jour <span>( {date.toLocaleDateString("fr-FR", options)} )</span>
+        Humeur du jour <span>( {dateOfDay} )</span>
       </h3>
       <HomeIconsMood
         iconMoodSelect={iconMoodSelect}
@@ -47,7 +47,7 @@ const HomeMoodDay = () => {
       />
       <p>{iconMoodSelect.txt}</p>
       <HomeDescriptionMood
-        date={date.toLocaleDateString("fr-FR", options)}
+        date={dateOfDay}
         nbrIconMood={iconMoodSelect.nbr}
         txtMood={iconMoodSelect.txt}
       />

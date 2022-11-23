@@ -1,9 +1,10 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { themeColors } from "../../theme/theme";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { AuthContext } from "../../context/AuthContext";
+import { AppContext } from "../../context/Context";
 
 interface DescriptionProps {
   date: string;

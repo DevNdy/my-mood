@@ -1,6 +1,7 @@
 import { collection, getDocs, onSnapshot, orderBy, query } from "firebase/firestore";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { db } from "../firebase-config";
+import { AuthContext } from "./AuthContext";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ type ContextType = {
   setMoodDataSelected: (newSate: any) => void;
   openEdit: boolean;
   setOpenEdit: (newState: boolean) => void;
+  dateOfDay: string;
 };
 
 const initialValue = {
@@ -28,9 +30,15 @@ const initialValue = {
   setMoodDataSelected: () => {},
   openEdit: false,
   setOpenEdit: () => {},
+  dateOfDay: "",
 };
 
 export const AppContext = createContext<ContextType>(initialValue);
+
+//date of day
+const date = new Date();
+const options: {} = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
+const dateOfDay = date.toLocaleDateString("fr-FR", options);
 
 export function AppContextProvider({ children }: ChildrenProps) {
   //data firebase:
@@ -59,7 +67,14 @@ export function AppContextProvider({ children }: ChildrenProps) {
 
   return (
     <AppContext.Provider
-      value={{ dataMood, moodDataSelected, setMoodDataSelected, openEdit, setOpenEdit }}
+      value={{
+        dataMood,
+        moodDataSelected,
+        setMoodDataSelected,
+        openEdit,
+        setOpenEdit,
+        dateOfDay,
+      }}
     >
       {children}
     </AppContext.Provider>

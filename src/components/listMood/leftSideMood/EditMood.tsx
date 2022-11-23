@@ -45,7 +45,6 @@ const EditMood = () => {
     } catch (err) {
       console.log(err);
     }
-    console.log("is submit");
   }
 
   return (
