@@ -103,7 +103,7 @@ const ListMyMoodStyled = styled.div`
 
   .idelete {
     font-size: 18px;
-    margin-left: 20px;
+    margin-left: 15px;
     color: #7c0202;
     border: 0.5px solid black;
     padding: 7px;

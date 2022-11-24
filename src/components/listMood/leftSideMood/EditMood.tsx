@@ -17,6 +17,7 @@ const EditMood = () => {
     nbr: 0,
     txt: "--",
   });
+  const [messageErr, setMessageErr] = useState<string>("");
   const refDescription = useRef<HTMLInputElement>(null);
 
   function handleClickEditIconsMood(iSelect: number, txt: string) {
@@ -30,20 +31,25 @@ const EditMood = () => {
   async function handleSubmitUpdateMood(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    try {
-      await updateDoc(doc(db, "mood", `${moodDataSelected.id}`), {
-        description: refDescription.current!.value,
-        iconNbr: iconMoodEdit.nbr,
-        txtMood: iconMoodEdit.txt,
-      });
-      refDescription.current!.value = "";
-      setIconMoodEdit({
-        nbr: 0,
-        txt: "",
-      });
-      setOpenEdit(!openEdit);
-    } catch (err) {
-      console.log(err);
+    if (iconMoodEdit.nbr !== 0) {
+      try {
+        await updateDoc(doc(db, "mood", `${moodDataSelected.id}`), {
+          description: refDescription.current!.value,
+          iconNbr: iconMoodEdit.nbr,
+          txtMood: iconMoodEdit.txt,
+        });
+        refDescription.current!.value = "";
+        setIconMoodEdit({
+          nbr: 0,
+          txt: "",
+        });
+        setOpenEdit(!openEdit);
+        setMessageErr("");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      setMessageErr("Oups, vous avez oublié l'émoticon..");
     }
   }
 
@@ -52,7 +58,7 @@ const EditMood = () => {
       <div className={`${openEdit ? "isOpen" : "isClose"}`}>
         <form onSubmit={handleSubmitUpdateMood}>
           <h3>Editer l'humeur du {moodDataSelected.date}:</h3>
-          <input type="text" placeholder="Changer la phrase.." ref={refDescription} />
+          <input type="text" placeholder="Changer la phrase.." ref={refDescription} required />
           <HomeIconsMood
             iconMoodSelect={iconMoodEdit}
             onClickAnger={() => handleClickEditIconsMood(1, "En colère")}
@@ -65,6 +71,7 @@ const EditMood = () => {
             className="iconsStyle"
           />
           <button>Sauvegarder les modifications</button>
+          <p>{messageErr}</p>
         </form>
       </div>
     </EditMoodStyled>
@@ -75,7 +82,7 @@ const EditMoodStyled = styled.div`
   margin: 15px;
 
   .isClose {
-    height: 150px;
+    height: 170px;
     width: 395px;
     border-radius: 22px;
     background-color: ${themeColors.fond};
@@ -116,11 +123,16 @@ const EditMoodStyled = styled.div`
         padding: 3px 10px 3px 10px;
         opacity: 0.7;
       }
+      p {
+        color: red;
+        font-size: 14px;
+        margin: 5px;
+      }
     }
   }
 
   .isOpen {
-    height: 150px;
+    height: 170px;
     width: 395px;
     border-radius: 22px;
     background-color: ${themeColors.fond};
@@ -169,6 +181,11 @@ const EditMoodStyled = styled.div`
         &:hover {
           opacity: 1;
         }
+      }
+      p {
+        margin: 5px;
+        color: red;
+        font-size: 14px;
       }
     }
   }
