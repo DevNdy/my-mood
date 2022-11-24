@@ -1,9 +1,10 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { themeColors } from "../../theme/theme";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { AuthContext } from "../../context/AuthContext";
+import { AppContext } from "../../context/Context";
 
 interface DescriptionProps {
   date: string;
@@ -31,9 +32,11 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood }: DescriptionProps) =
         description: refDescription.current!.value,
         name: currentUser.displayName,
         email: currentUser.email,
+        id: generateId,
       });
       refDescription.current!.value = "";
       setMessageErr("Humeur enregistré.");
+      window.location.reload();
     } catch (err) {
       console.log(err);
       setMessageErr("une erreur c'est produite...");

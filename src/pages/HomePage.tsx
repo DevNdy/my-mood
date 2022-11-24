@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import HomeMoodDay from "../components/home/HomeMoodDay";
-import ListMoodWindow from "../components/listMood/ListMoodWindow";
+import MoodWindow from "../components/listMood/MoodWindow";
 import NavBar from "../components/navbar/NavBar";
 import { themeColors } from "../theme/theme";
 
@@ -15,7 +15,7 @@ const HomePage = () => {
       <button onClick={() => setOpenWindow(!openWindow)} className="btnList">
         <i className={`${openWindow ? "fa-solid fa-x iList" : "fa-solid fa-list"} `}></i>
       </button>
-      <ListMoodWindow openWindow={openWindow} />
+      <MoodWindow openWindow={openWindow} />
     </HomePageStyled>
   );
 };
@@ -39,6 +39,10 @@ const HomePageStyled = styled.div`
     background-color: ${themeColors.primaryColor};
     cursor: pointer;
     z-index: 20;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+    }
 
     i {
       font-size: 22px;

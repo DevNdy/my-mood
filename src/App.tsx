@@ -7,19 +7,17 @@ import { AuthContextProvider } from "./context/AuthContext";
 function App() {
   return (
     <>
-      <AuthContextProvider>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <HomePage />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </AuthContextProvider>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </>
   );
 }

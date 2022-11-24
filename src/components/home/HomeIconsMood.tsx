@@ -10,6 +10,7 @@ interface HomeIconsMoodProps {
   onClickHappy: () => void;
   onClickVeryHappy: () => void;
   onClickVeryLove: () => void;
+  className: string;
 }
 
 const HomeIconsMood = ({
@@ -21,9 +22,10 @@ const HomeIconsMood = ({
   onClickHappy,
   onClickVeryHappy,
   onClickVeryLove,
+  className,
 }: HomeIconsMoodProps) => {
   return (
-    <HomeIconsMoodStyled>
+    <HomeIconsMoodStyled className={className}>
       <i
         onClick={onClickAnger}
         style={{ color: `${iconMoodSelect.nbr === 1 ? "#950303" : ""}` }}
@@ -63,13 +65,6 @@ const HomeIconsMood = ({
   );
 };
 
-const HomeIconsMoodStyled = styled.div`
-  i {
-    color: gray;
-    font-size: 40px;
-    margin-left: 20px;
-    cursor: pointer;
-  }
-`;
+const HomeIconsMoodStyled = styled.div``;
 
 export default HomeIconsMood;
