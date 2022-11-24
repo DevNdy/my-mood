@@ -50,6 +50,7 @@ const HomeMoodDay = () => {
         date={dateOfDay}
         nbrIconMood={iconMoodSelect.nbr}
         txtMood={iconMoodSelect.txt}
+        color={iconMoodSelect.color}
       />
     </HomeMoodDayStyled>
   );

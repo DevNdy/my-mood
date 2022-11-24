@@ -10,9 +10,10 @@ interface DescriptionProps {
   date: string;
   nbrIconMood: number;
   txtMood: string;
+  color: string;
 }
 
-const HomeDescriptionMood = ({ date, nbrIconMood, txtMood }: DescriptionProps) => {
+const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionProps) => {
   const { currentUser } = useContext(AuthContext);
   const refDescription = useRef<HTMLInputElement>(null);
   const [messageErr, setMessageErr] = useState<string>("");
@@ -33,6 +34,7 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood }: DescriptionProps) =
         name: currentUser.displayName,
         email: currentUser.email,
         id: generateId,
+        color: color,
       });
       refDescription.current!.value = "";
       setMessageErr("Humeur enregistré.");
