@@ -5,6 +5,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { AuthContext } from "../../context/AuthContext";
 import { AppContext } from "../../context/Context";
+import { useNavigate } from "react-router-dom";
 
 interface DescriptionProps {
   date: string;
@@ -15,33 +16,45 @@ interface DescriptionProps {
 
 const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionProps) => {
   const { currentUser } = useContext(AuthContext);
+  const { dataMood, dateOfDay } = useContext(AppContext);
   const refDescription = useRef<HTMLInputElement>(null);
   const [messageErr, setMessageErr] = useState<string>("");
+  const [dayOfDataMood, setDayOfDataMood] = useState<string[]>([]);
 
   const generateId = Math.floor((1 + Math.random()) * 0x10000)
     .toString(16)
     .substring(1);
 
+  useEffect(() => {
+    const day = dataMood
+      .filter((f: any) => f.email === currentUser.email && f.date === dateOfDay)
+      .map((e: any) => e.date);
+    setDayOfDataMood(day);
+  }, []);
+
   async function handleSubmitMood(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    try {
-      await setDoc(doc(db, "mood", generateId), {
-        date: date,
-        iconNbr: nbrIconMood,
-        txtMood: txtMood,
-        description: refDescription.current!.value,
-        name: currentUser.displayName,
-        email: currentUser.email,
-        id: generateId,
-        color: color,
-      });
-      refDescription.current!.value = "";
-      setMessageErr("Humeur enregistré.");
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-      setMessageErr("une erreur c'est produite...");
+    if (dayOfDataMood[0] !== dateOfDay) {
+      try {
+        await setDoc(doc(db, "mood", generateId), {
+          date: date,
+          iconNbr: nbrIconMood,
+          txtMood: txtMood,
+          description: refDescription.current!.value,
+          name: currentUser.displayName,
+          email: currentUser.email,
+          id: generateId,
+          color: color,
+        });
+        refDescription.current!.value = "";
+        setMessageErr("Humeur enregistré.");
+      } catch (err) {
+        console.log(err);
+        setMessageErr("une erreur c'est produite...");
+      }
+    } else {
+      alert("Vous avez déjà publié aujourd'hui");
     }
   }
 
