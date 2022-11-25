@@ -71,8 +71,8 @@ const RightSideMood = () => {
         />
       </div>
       <p>
-        Suivez sous forme de graphique votre humeur, sur l'axe Y nous retrouvons le niveau
-        d'humeur.Sur l'axe x le jour.
+        "Suivez sous forme de graphique votre humeur, sur l'axe Y nous retrouvons le niveau
+        d'humeur.Sur l'axe x le jour."
       </p>
       <p className="levelMood">
         Niveau d'humeur:
@@ -111,20 +111,25 @@ const RightSideMoodStyled = styled.div`
 
   p {
     width: 45vw;
-    margin: 20px;
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 18px;
+    font-style: italic;
+    opacity: 0.7;
+    color: ${themeColors.black};
+  }
+
+  .levelMood {
+    font-size: 22px;
+    margin-top: 20px;
+    opacity: 1;
     span {
       text-align: start;
       width: 130px;
       font-size: 15px;
     }
-  }
-
-  .levelMood {
-    font-size: 22px;
   }
 `;
 
