@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { themeColors } from "../../theme/theme";
+import MoodTitleLogin from "../../ui-reusable/MoodTitleLogin";
 import SignIn from "./sign/SignIn";
 import SignUp from "./sign/SignUp";
 
 const LoginSign = () => {
   const [signInOrSignUp, setSignInOrSignUp] = useState(false);
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1080px)" });
+
   return (
     <LoginSignStyled>
+      {isTabletOrMobile ? <MoodTitleLogin /> : <></>}
       {signInOrSignUp ? <SignUp /> : <SignIn />}
       <button onClick={() => setSignInOrSignUp(!signInOrSignUp)} className="btnSignInOrSignUp">
         {signInOrSignUp ? "Déjà inscrit?" : "Pas encore de profil?"}
@@ -67,6 +72,10 @@ const LoginSignStyled = styled.div`
       font-size: 15px;
       font-weight: 400;
     }
+  }
+
+  @media (max-width: 1080px) {
+    width: 100vw;
   }
 `;
 

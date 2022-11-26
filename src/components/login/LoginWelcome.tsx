@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { themeColors } from "../../theme/theme";
 import LoginIcons from "./LoginIcons";
 import SocialNetworks from "../../ui-reusable/SocialNetworks";
+import MoodTitleLogin from "../../ui-reusable/MoodTitleLogin";
 
 const LoginWelcome = () => {
   return (
     <LoginWelcomeStyled>
-      <h1>
-        Welcome to <span>MOOD</span>
-      </h1>
+      <MoodTitleLogin />
       <p>Décrivez chaques jours votre humeur, voyez au fil du temps votre état mental...</p>
       <LoginIcons />
       <div className="networks">
@@ -27,18 +26,6 @@ const LoginWelcomeStyled = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  h1 {
-    font-family: "Patrick Hand", cursive;
-    font-size: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    span {
-      font-family: "Rubik Microbe", cursive;
-      font-size: 75px;
-    }
-  }
 
   p {
     font-size: 19px;
