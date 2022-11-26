@@ -17,25 +17,17 @@ interface ListMoodProps {
 }
 
 const ListMyMood = () => {
-  const {
-    dataMood,
-    moodDataSelected,
-    setMoodDataSelected,
-    setOpenEdit,
-    openEdit,
-    setCountDataMood,
-    countDataMood,
-  } = useContext(AppContext);
+  const { dataMood, setMoodDataSelected, setOpenEdit, setCountDataMood, countDataMood } =
+    useContext(AppContext);
   const { currentUser } = useContext(AuthContext);
 
   function handleClickEditMood(date: string, id: string, email: string) {
-    setOpenEdit(!openEdit);
+    setOpenEdit(true);
     setMoodDataSelected({
       date,
       id,
       email,
     });
-    console.log(moodDataSelected);
   }
 
   function handleClickDeleteItem(id: string) {

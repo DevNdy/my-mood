@@ -57,7 +57,10 @@ const EditMood = () => {
     <EditMoodStyled>
       <div className={`${openEdit ? "isOpen" : "isClose"}`}>
         <form onSubmit={handleSubmitUpdateMood}>
-          <h3>Editer l'humeur du {moodDataSelected.date}:</h3>
+          <h3>
+            Editer l'humeur du {moodDataSelected.date}:{" "}
+            <i onClick={() => setOpenEdit(false)} className="fa-solid fa-xmark iClose"></i>
+          </h3>
           <input type="text" placeholder="Changer la phrase.." ref={refDescription} required />
           <HomeIconsMood
             iconMoodSelect={iconMoodEdit}
@@ -82,8 +85,8 @@ const EditMoodStyled = styled.div`
   margin: 15px;
 
   .isClose {
-    height: 170px;
-    width: 395px;
+    height: 180px;
+    width: 445px;
     border-radius: 22px;
     background-color: ${themeColors.fond};
     transform: scaleX(0);
@@ -96,7 +99,28 @@ const EditMoodStyled = styled.div`
       align-items: center;
 
       h3 {
-        margin: 0;
+        width: 100%;
+        margin: 5px 0 0 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .iClose {
+          height: 25px;
+          width: 25px;
+          margin-top: 5px;
+          padding: 2px;
+          color: ${themeColors.black};
+          background-color: ${themeColors.primaryColor};
+          border-radius: 50%;
+          border: 0.5px solid ${themeColors.black};
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
       }
 
       input {
@@ -132,8 +156,8 @@ const EditMoodStyled = styled.div`
   }
 
   .isOpen {
-    height: 170px;
-    width: 395px;
+    height: 180px;
+    width: 445px;
     border-radius: 22px;
     background-color: ${themeColors.fond};
     transform: scaleX(1);
@@ -145,7 +169,28 @@ const EditMoodStyled = styled.div`
       align-items: center;
 
       h3 {
-        margin: 0;
+        width: 100%;
+        margin: 5px 0 0 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .iClose {
+          height: 25px;
+          width: 25px;
+          margin-top: 5px;
+          padding: 2px;
+          color: ${themeColors.black};
+          background-color: ${themeColors.primaryColor};
+          border-radius: 50%;
+          border: 0.5px solid ${themeColors.black};
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
       }
 
       input {
