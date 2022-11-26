@@ -5,9 +5,10 @@ import "chart.js/auto";
 import { AppContext } from "../../../context/Context";
 import { AuthContext } from "../../../context/AuthContext";
 import { themeColors } from "../../../theme/theme";
+import DescriptionGraph from "./DescriptionGraph";
 
 const RightSideMood = () => {
-  const { dataMood, dateOfDay } = useContext(AppContext);
+  const { dataMood } = useContext(AppContext);
   const { currentUser } = useContext(AuthContext);
   const [graphAnim, setGraphAnim] = useState(true);
 
@@ -77,20 +78,7 @@ const RightSideMood = () => {
           }}
         />
       </div>
-      <p>
-        "Suivez sous forme de graphique votre humeur, sur l'axe Y nous retrouvons le niveau
-        d'humeur.Sur l'axe x le jour."
-      </p>
-      <p className="levelMood">
-        Niveau d'humeur:
-        <span>1: En colère</span>
-        <span>2: Triste</span>
-        <span>3: Pas content</span>
-        <span>4: Normal</span>
-        <span>5: Content</span>
-        <span>6: Très content</span>
-        <span>7: Euphorique</span>
-      </p>
+      <DescriptionGraph />
     </RightSideMoodStyled>
   );
 };
@@ -114,29 +102,6 @@ const RightSideMoodStyled = styled.div`
     justify-content: center;
     background-color: ${themeColors.fond};
     border-radius: 30px;
-  }
-
-  p {
-    width: 45vw;
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 18px;
-    font-style: italic;
-    opacity: 0.7;
-    color: ${themeColors.black};
-  }
-
-  .levelMood {
-    font-size: 22px;
-    margin-top: 20px;
-    opacity: 1;
-    span {
-      text-align: start;
-      width: 130px;
-      font-size: 15px;
-    }
   }
 `;
 

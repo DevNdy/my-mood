@@ -13,11 +13,6 @@ export interface IconMoodSelectProps {
 const HomeMoodDay = () => {
   const { dateOfDay } = useContext(AppContext);
 
-  //date format long
-  const date = new Date();
-  const options: {} = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
-  const dateOfDayLong = date.toLocaleDateString("fr-FR", options);
-
   const [iconMoodSelect, setIconMoodSelect] = useState<IconMoodSelectProps>({
     nbr: 0,
     txt: "--",
@@ -36,7 +31,7 @@ const HomeMoodDay = () => {
   return (
     <HomeMoodDayStyled>
       <h3>
-        Humeur du jour <span>( {dateOfDayLong} )</span>
+        Humeur du jour <span>( {dateOfDay} )</span>
       </h3>
       <HomeIconsMood
         iconMoodSelect={iconMoodSelect}

@@ -4,6 +4,7 @@ import HomeMoodDay from "../components/home/HomeMoodDay";
 import MoodWindow from "../components/listMood/MoodWindow";
 import NavBar from "../components/navbar/NavBar";
 import { themeColors } from "../theme/theme";
+import SocialNetworks from "../ui-reusable/SocialNetworks";
 
 const HomePage = () => {
   const [openWindow, setOpenWindow] = useState(false);
@@ -16,6 +17,9 @@ const HomePage = () => {
         <i className={`${openWindow ? "fa-solid fa-x iList" : "fa-solid fa-list"} `}></i>
       </button>
       <MoodWindow openWindow={openWindow} />
+      <div className="social">
+        <SocialNetworks />
+      </div>
     </HomePageStyled>
   );
 };
@@ -52,6 +56,11 @@ const HomePageStyled = styled.div`
     .iList {
       transform: rotate(180deg);
     }
+  }
+
+  .social {
+    position: absolute;
+    bottom: 10px;
   }
 `;
 

@@ -34,6 +34,7 @@ const LoginSignStyled = styled.div`
   justify-content: center;
 
   .btnSignInOrSignUp {
+    margin-bottom: 70px;
     padding: 5px 10px 5px 10px;
     border-radius: 12px;
     background-color: ${themeColors.fond};
@@ -49,21 +50,22 @@ const LoginSignStyled = styled.div`
 
   .identifiant {
     position: absolute;
-    bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    bottom: 10px;
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: 800;
     background-color: ${themeColors.primaryColor};
     padding: 10px;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     span {
+      width: 180px;
       margin-top: 5px;
       font-size: 15px;
       font-weight: 400;
-      width: 180px;
     }
   }
 `;

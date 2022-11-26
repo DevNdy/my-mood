@@ -149,7 +149,7 @@ const EditMoodStyled = styled.div`
       button {
         margin-top: 10px;
         background-color: ${themeColors.primaryColor};
-        border: 1px solid black;
+        border: 0.5px solid black;
         border-radius: 5px;
         padding: 3px 10px 3px 10px;
         opacity: 0.7;
@@ -217,13 +217,14 @@ const EditMoodStyled = styled.div`
           font-size: 20px;
           margin: 15px 5px 0 5px;
           color: gray;
+          cursor: pointer;
         }
       }
 
       button {
         margin-top: 10px;
         background-color: ${themeColors.primaryColor};
-        border: 1px solid black;
+        border: 0.5px solid black;
         border-radius: 5px;
         padding: 3px 10px 3px 10px;
         opacity: 0.7;

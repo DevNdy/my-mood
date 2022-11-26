@@ -30,6 +30,7 @@ const NavBarStyled = styled.header`
   padding: 10px 20px 10px 20px;
   background-color: ${themeColors.primaryColor};
   border-radius: 12px;
+  border: 0.5px solid black;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -43,10 +44,10 @@ const NavBarStyled = styled.header`
   }
 
   button {
-    border: none;
-    background-color: ${themeColors.fond};
-    border-radius: 30px;
     padding: 3px 10px 3px 10px;
+    background-color: ${themeColors.fond};
+    border: 0.5px solid black;
+    border-radius: 30px;
     cursor: pointer;
     opacity: 0.6;
     &:hover {
