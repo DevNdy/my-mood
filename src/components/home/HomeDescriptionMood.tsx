@@ -36,7 +36,7 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionP
   async function handleSubmitMood(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (dayOfDataMood[0] !== dateOfDay) {
+    if (dayOfDataMood[0] !== dateOfDay && nbrIconMood !== 0) {
       try {
         await setDoc(doc(db, "mood", generateId), {
           date: date,
@@ -56,7 +56,11 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionP
         setMessageErr("une erreur c'est produite...");
       }
     } else {
-      alert("Vous avez déjà publié aujourd'hui");
+      if (nbrIconMood === 0) {
+        setMessageErr("Séléctionnez un icon s'il vous plaît..");
+      } else {
+        setMessageErr("vous avez déjà publié aujourd'hui...");
+      }
     }
     setCountDataMood(countDataMood + 1);
   }
@@ -107,8 +111,8 @@ const HomeDescriptionMoodStyled = styled.form`
   }
 
   p {
-    font-size: 15px;
-    color: orange;
+    font-size: 17px;
+    color: #f15304;
   }
 `;
 
