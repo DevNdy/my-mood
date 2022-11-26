@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { themeColors } from "../../theme/theme";
 import LeftSideMood from "./leftSideMood/LeftSideMood";
 import ListMyMood from "./leftSideMood/ListMyMood";
+import RightSideMood from "./rightSideMood/RightSideMood";
 
 interface MoodProps {
   openWindow: boolean;
@@ -13,6 +14,7 @@ const MoodWindow = ({ openWindow }: MoodProps) => {
     <MoodWindowStyled>
       <div className={`${openWindow ? "windowOpen" : "windowClose"}`}>
         <LeftSideMood />
+        <RightSideMood />
       </div>
     </MoodWindowStyled>
   );

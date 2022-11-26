@@ -18,6 +18,8 @@ type ContextType = {
   openEdit: boolean;
   setOpenEdit: (newState: boolean) => void;
   dateOfDay: string;
+  countDataMood: number;
+  setCountDataMood: (newState: number) => void;
 };
 
 const initialValue = {
@@ -31,13 +33,15 @@ const initialValue = {
   openEdit: false,
   setOpenEdit: () => {},
   dateOfDay: "",
+  countDataMood: 0,
+  setCountDataMood: () => {},
 };
 
 export const AppContext = createContext<ContextType>(initialValue);
 
 //date of day
 const date = new Date();
-const options: {} = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
+const options: {} = { weekday: "short", year: "numeric", month: "short", day: "2-digit" };
 const dateOfDay = date.toLocaleDateString("fr-FR", options);
 
 export function AppContextProvider({ children }: ChildrenProps) {
@@ -50,7 +54,7 @@ export function AppContextProvider({ children }: ChildrenProps) {
 
   function dataFirebase() {
     try {
-      const q = query(collection(db, "mood"), orderBy("date"));
+      const q = query(collection(db, "mood"), orderBy("times", "desc"));
       onSnapshot(q, (snapshot) => {
         setDataMood(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       });
@@ -65,6 +69,9 @@ export function AppContextProvider({ children }: ChildrenProps) {
   //openEdit
   const [openEdit, setOpenEdit] = useState<boolean>(initialValue.openEdit);
 
+  //counter for useEffect loading data:
+  const [countDataMood, setCountDataMood] = useState<number>(initialValue.countDataMood);
+
   return (
     <AppContext.Provider
       value={{
@@ -74,6 +81,8 @@ export function AppContextProvider({ children }: ChildrenProps) {
         openEdit,
         setOpenEdit,
         dateOfDay,
+        countDataMood,
+        setCountDataMood,
       }}
     >
       {children}

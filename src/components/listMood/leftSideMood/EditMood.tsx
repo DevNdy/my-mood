@@ -9,6 +9,7 @@ import HomeIconsMood from "../../home/HomeIconsMood";
 interface IconMoodEditProps {
   nbr: number;
   txt: string;
+  colorIcon: string;
 }
 
 const EditMood = () => {
@@ -16,14 +17,16 @@ const EditMood = () => {
   const [iconMoodEdit, setIconMoodEdit] = useState<IconMoodEditProps>({
     nbr: 0,
     txt: "--",
+    colorIcon: "",
   });
   const [messageErr, setMessageErr] = useState<string>("");
   const refDescription = useRef<HTMLInputElement>(null);
 
-  function handleClickEditIconsMood(iSelect: number, txt: string) {
+  function handleClickEditIconsMood(iSelect: number, txt: string, colorIcon: string) {
     setIconMoodEdit({
       nbr: iSelect,
       txt: txt,
+      colorIcon,
     });
     console.log(iconMoodEdit);
   }
@@ -37,13 +40,15 @@ const EditMood = () => {
           description: refDescription.current!.value,
           iconNbr: iconMoodEdit.nbr,
           txtMood: iconMoodEdit.txt,
+          color: iconMoodEdit.colorIcon,
         });
         refDescription.current!.value = "";
         setIconMoodEdit({
           nbr: 0,
           txt: "",
+          colorIcon: "",
         });
-        setOpenEdit(!openEdit);
+        setOpenEdit(false);
         setMessageErr("");
       } catch (err) {
         console.log(err);
@@ -57,17 +62,22 @@ const EditMood = () => {
     <EditMoodStyled>
       <div className={`${openEdit ? "isOpen" : "isClose"}`}>
         <form onSubmit={handleSubmitUpdateMood}>
-          <h3>Editer l'humeur du {moodDataSelected.date}:</h3>
+          <h3>
+            Editer l'humeur du {moodDataSelected.date}:{" "}
+            <i onClick={() => setOpenEdit(false)} className="fa-solid fa-xmark iClose"></i>
+          </h3>
           <input type="text" placeholder="Changer la phrase.." ref={refDescription} required />
           <HomeIconsMood
             iconMoodSelect={iconMoodEdit}
-            onClickAnger={() => handleClickEditIconsMood(1, "En colère")}
-            onClickSad={() => handleClickEditIconsMood(2, "Triste")}
-            onClickNotHappy={() => handleClickEditIconsMood(3, "Pas content")}
-            onClickNormal={() => handleClickEditIconsMood(4, "Normal")}
-            onClickHappy={() => handleClickEditIconsMood(5, "Content")}
-            onClickVeryHappy={() => handleClickEditIconsMood(6, "Très content")}
-            onClickVeryLove={() => handleClickEditIconsMood(7, "Euphorique/Excité/Amoureux")}
+            onClickAnger={() => handleClickEditIconsMood(1, "En colère", "#950303")}
+            onClickSad={() => handleClickEditIconsMood(2, "Triste", "#353535")}
+            onClickNotHappy={() => handleClickEditIconsMood(3, "Pas content", "#9a6c3e")}
+            onClickNormal={() => handleClickEditIconsMood(4, "Normal", "#e7a325")}
+            onClickHappy={() => handleClickEditIconsMood(5, "Content", "#56a9f1")}
+            onClickVeryHappy={() => handleClickEditIconsMood(6, "Très content", "#32bb32")}
+            onClickVeryLove={() =>
+              handleClickEditIconsMood(7, "Euphorique/Excité/Amoureux", "#f25f77")
+            }
             className="iconsStyle"
           />
           <button>Sauvegarder les modifications</button>
@@ -82,8 +92,8 @@ const EditMoodStyled = styled.div`
   margin: 15px;
 
   .isClose {
-    height: 170px;
-    width: 395px;
+    height: 180px;
+    width: 445px;
     border-radius: 22px;
     background-color: ${themeColors.fond};
     transform: scaleX(0);
@@ -96,7 +106,28 @@ const EditMoodStyled = styled.div`
       align-items: center;
 
       h3 {
-        margin: 0;
+        width: 100%;
+        margin: 5px 0 0 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .iClose {
+          height: 25px;
+          width: 25px;
+          margin-top: 5px;
+          padding: 2px;
+          color: ${themeColors.black};
+          background-color: ${themeColors.primaryColor};
+          border-radius: 50%;
+          border: 0.5px solid ${themeColors.black};
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
       }
 
       input {
@@ -132,8 +163,8 @@ const EditMoodStyled = styled.div`
   }
 
   .isOpen {
-    height: 170px;
-    width: 395px;
+    height: 180px;
+    width: 445px;
     border-radius: 22px;
     background-color: ${themeColors.fond};
     transform: scaleX(1);
@@ -145,7 +176,28 @@ const EditMoodStyled = styled.div`
       align-items: center;
 
       h3 {
-        margin: 0;
+        width: 100%;
+        margin: 5px 0 0 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .iClose {
+          height: 25px;
+          width: 25px;
+          margin-top: 5px;
+          padding: 2px;
+          color: ${themeColors.black};
+          background-color: ${themeColors.primaryColor};
+          border-radius: 50%;
+          border: 0.5px solid ${themeColors.black};
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
       }
 
       input {
