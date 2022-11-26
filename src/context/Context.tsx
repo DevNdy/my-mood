@@ -41,7 +41,7 @@ export const AppContext = createContext<ContextType>(initialValue);
 
 //date of day
 const date = new Date();
-const options: {} = { weekday: "short", year: "numeric", month: "short", day: "2-digit" };
+const options: {} = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
 const dateOfDay = date.toLocaleDateString("fr-FR", options);
 
 export function AppContextProvider({ children }: ChildrenProps) {

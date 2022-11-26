@@ -17,6 +17,7 @@ const LoginIcons = () => {
 };
 
 const LoginIconsStyled = styled.div`
+  margin-bottom: 70px;
   i {
     font-size: 25px;
     margin: 8px;

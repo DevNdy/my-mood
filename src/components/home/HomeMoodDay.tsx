@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { AppContext } from "../../context/Context";
 import HomeDescriptionMood from "./HomeDescriptionMood";
 import HomeIconsMood from "./HomeIconsMood";
 
@@ -10,9 +11,7 @@ export interface IconMoodSelectProps {
 }
 
 const HomeMoodDay = () => {
-  const date = new Date();
-  const options: {} = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
-  const dateOfDay = date.toLocaleDateString("fr-FR", options);
+  const { dateOfDay } = useContext(AppContext);
 
   const [iconMoodSelect, setIconMoodSelect] = useState<IconMoodSelectProps>({
     nbr: 0,
@@ -42,9 +41,7 @@ const HomeMoodDay = () => {
         onClickNormal={() => handleClickSelectIconsMood(4, "Normal", "#e7a325")}
         onClickHappy={() => handleClickSelectIconsMood(5, "Content", "#56a9f1")}
         onClickVeryHappy={() => handleClickSelectIconsMood(6, "Très content", "#32bb32")}
-        onClickVeryLove={() =>
-          handleClickSelectIconsMood(7, "Euphorique/Excité/Amoureux", "#f25f77")
-        }
+        onClickVeryLove={() => handleClickSelectIconsMood(7, "Euphorique/Amoureux", "#f25f77")}
         className="classNameIcon"
       />
       <p>{iconMoodSelect.txt}</p>

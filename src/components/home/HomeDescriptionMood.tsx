@@ -5,7 +5,6 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { AuthContext } from "../../context/AuthContext";
 import { AppContext } from "../../context/Context";
-import { useNavigate } from "react-router-dom";
 
 interface DescriptionProps {
   date: string;
@@ -30,7 +29,6 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionP
       .filter((f: any) => f.email === currentUser.email && f.date === dateOfDay)
       .map((e: any) => e.date);
     setDayOfDataMood(day);
-    console.log(countDataMood);
   }, [countDataMood]);
 
   async function handleSubmitMood(e: React.FormEvent<HTMLFormElement>) {
@@ -105,9 +103,14 @@ const HomeDescriptionMoodStyled = styled.form`
     margin-top: 15px;
     background-color: ${themeColors.primaryColor};
     border-radius: 5px;
-    border: 1px solid black;
-    cursor: pointer;
+    border: 0.5px solid black;
     font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.3s;
+    &:hover {
+      opacity: 1;
+    }
   }
 
   p {
