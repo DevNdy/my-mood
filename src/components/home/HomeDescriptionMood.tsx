@@ -46,6 +46,7 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionP
           email: currentUser.email,
           id: generateId,
           color: color,
+          times: Date.now(),
         });
         refDescription.current!.value = "";
         setMessageErr("Humeur enregistré.");

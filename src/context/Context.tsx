@@ -50,7 +50,7 @@ export function AppContextProvider({ children }: ChildrenProps) {
 
   function dataFirebase() {
     try {
-      const q = query(collection(db, "mood"), orderBy("date"));
+      const q = query(collection(db, "mood"), orderBy("times", "desc"));
       onSnapshot(q, (snapshot) => {
         setDataMood(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       });
