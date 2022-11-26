@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { AppContext } from "../../context/Context";
 import HomeDescriptionMood from "./HomeDescriptionMood";
 import HomeIconsMood from "./HomeIconsMood";
 
@@ -10,9 +11,11 @@ export interface IconMoodSelectProps {
 }
 
 const HomeMoodDay = () => {
+  const { dateOfDay } = useContext(AppContext);
+
   const date = new Date();
   const options: {} = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
-  const dateOfDay = date.toLocaleDateString("fr-FR", options);
+  const dateOfDayLong = date.toLocaleDateString("fr-FR", options);
 
   const [iconMoodSelect, setIconMoodSelect] = useState<IconMoodSelectProps>({
     nbr: 0,
@@ -32,7 +35,7 @@ const HomeMoodDay = () => {
   return (
     <HomeMoodDayStyled>
       <h3>
-        Humeur du jour <span>( {dateOfDay} )</span>
+        Humeur du jour <span>( {dateOfDayLong} )</span>
       </h3>
       <HomeIconsMood
         iconMoodSelect={iconMoodSelect}

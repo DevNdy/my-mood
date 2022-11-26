@@ -97,6 +97,7 @@ const ListMyMoodStyled = styled.div`
   .iEdit {
     font-size: 18px;
     border: 0.5px solid black;
+    margin-left: 15px;
     padding: 7px;
     border-radius: 50%;
     cursor: pointer;
@@ -104,7 +105,7 @@ const ListMyMoodStyled = styled.div`
 
   .idelete {
     font-size: 18px;
-    margin-left: 15px;
+    margin: 0 10px 0 10px;
     color: #7c0202;
     border: 0.5px solid black;
     padding: 7px;
