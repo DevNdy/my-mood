@@ -16,7 +16,7 @@ interface DescriptionProps {
 
 const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionProps) => {
   const { currentUser } = useContext(AuthContext);
-  const { dataMood, dateOfDay } = useContext(AppContext);
+  const { dataMood, dateOfDay, countDataMood, setCountDataMood } = useContext(AppContext);
   const refDescription = useRef<HTMLInputElement>(null);
   const [messageErr, setMessageErr] = useState<string>("");
   const [dayOfDataMood, setDayOfDataMood] = useState<string[]>([]);
@@ -30,7 +30,8 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionP
       .filter((f: any) => f.email === currentUser.email && f.date === dateOfDay)
       .map((e: any) => e.date);
     setDayOfDataMood(day);
-  }, []);
+    console.log(countDataMood);
+  }, [countDataMood]);
 
   async function handleSubmitMood(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -57,6 +58,7 @@ const HomeDescriptionMood = ({ date, nbrIconMood, txtMood, color }: DescriptionP
     } else {
       alert("Vous avez déjà publié aujourd'hui");
     }
+    setCountDataMood(countDataMood + 1);
   }
 
   return (

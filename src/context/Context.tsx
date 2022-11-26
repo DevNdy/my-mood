@@ -18,6 +18,8 @@ type ContextType = {
   openEdit: boolean;
   setOpenEdit: (newState: boolean) => void;
   dateOfDay: string;
+  countDataMood: number;
+  setCountDataMood: (newState: number) => void;
 };
 
 const initialValue = {
@@ -31,6 +33,8 @@ const initialValue = {
   openEdit: false,
   setOpenEdit: () => {},
   dateOfDay: "",
+  countDataMood: 0,
+  setCountDataMood: () => {},
 };
 
 export const AppContext = createContext<ContextType>(initialValue);
@@ -65,6 +69,9 @@ export function AppContextProvider({ children }: ChildrenProps) {
   //openEdit
   const [openEdit, setOpenEdit] = useState<boolean>(initialValue.openEdit);
 
+  //counter for useEffect loading data:
+  const [countDataMood, setCountDataMood] = useState<number>(initialValue.countDataMood);
+
   return (
     <AppContext.Provider
       value={{
@@ -74,6 +81,8 @@ export function AppContextProvider({ children }: ChildrenProps) {
         openEdit,
         setOpenEdit,
         dateOfDay,
+        countDataMood,
+        setCountDataMood,
       }}
     >
       {children}
