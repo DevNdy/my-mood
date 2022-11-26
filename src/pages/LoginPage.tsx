@@ -2,11 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import LoginWelcome from "../components/login/LoginWelcome";
 import LoginSign from "../components/login/LoginSign";
+import { useMediaQuery } from "react-responsive";
 
 const LoginPage = () => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1080px)" });
+
   return (
     <LoginPageStyled>
-      <LoginWelcome />
+      {isTabletOrMobile ? <></> : <LoginWelcome />}
       <LoginSign />
     </LoginPageStyled>
   );

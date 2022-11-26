@@ -89,6 +89,12 @@ const SignInStyled = styled.form`
     color: red;
     font-style: italic;
   }
+
+  @media (max-width: 1080px) {
+    margin-top: 40px;
+    align-items: center;
+    height: 270px;
+  }
 `;
 
 export default SignIn;
