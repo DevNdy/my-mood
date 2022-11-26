@@ -35,6 +35,7 @@ const RightSideMood = () => {
                 pointBorderColor: dataMood
                   .filter((f: any) => f.email === currentUser.email)
                   .map((e: any) => [e.color]),
+                pointBorderWidth: 7,
               },
             ],
           }}
@@ -55,13 +56,19 @@ const RightSideMood = () => {
                 title: {
                   display: true,
                   text: "Niveau d'humeur",
+                  font: {
+                    weight: "bold",
+                  },
                 },
               },
             },
             plugins: {
               title: {
                 display: true,
-                text: "Graph de mes humeurs",
+                text: "Graphique de mes humeurs",
+                font: {
+                  size: 20,
+                },
               },
               legend: {
                 display: false,
