@@ -64,7 +64,8 @@ const HomePageStyled = styled.div`
   }
 
   @media (max-width: 1080px) {
-    max-height: 90vh;
+    min-height: 90vh;
+
     .btnList {
       top: 20px;
     }
