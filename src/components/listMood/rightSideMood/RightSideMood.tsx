@@ -107,8 +107,8 @@ const RightSideMoodStyled = styled.div`
     width: 100vw;
 
     .graph {
-      margin: 70px 5px 0 5px;
-      min-height: 340px;
+      margin: 110px 5px 0 5px;
+      min-height: 330px;
       width: 630px;
       transform: rotate(90deg);
     }

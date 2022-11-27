@@ -56,9 +56,9 @@ const MoodWindowStyled = styled.div`
 
     .windowClose {
       flex-direction: column;
-      top: -1800px;
+      top: -2000px;
       transition: 2.5s;
-      opacity: 0.8;
+      opacity: 0.9;
     }
   }
 `;

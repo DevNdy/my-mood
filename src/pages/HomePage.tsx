@@ -70,6 +70,7 @@ const HomePageStyled = styled.div`
     }
 
     .social {
+      position: fixed;
       bottom: 20px;
     }
   }

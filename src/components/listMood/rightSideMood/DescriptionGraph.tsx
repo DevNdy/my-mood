@@ -52,7 +52,7 @@ const DescriptionGraphStyled = styled.div`
   }
 
   @media (max-width: 1080px) {
-    margin-top: 100px;
+    margin-top: 130px;
     p {
       width: 90vw;
     }
