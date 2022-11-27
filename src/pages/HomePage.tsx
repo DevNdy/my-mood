@@ -62,6 +62,12 @@ const HomePageStyled = styled.div`
     position: absolute;
     bottom: 10px;
   }
+
+  @media (max-width: 1080px) {
+    .btnList {
+      top: 20px;
+    }
+  }
 `;
 
 export default HomePage;

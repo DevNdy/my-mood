@@ -98,6 +98,7 @@ const EditMoodStyled = styled.div`
     background-color: ${themeColors.fond};
     transform: scaleX(0);
     transition: 1s;
+    z-index: 10;
 
     form {
       margin: 12px;
@@ -169,6 +170,7 @@ const EditMoodStyled = styled.div`
     background-color: ${themeColors.fond};
     transform: scaleX(1);
     transition: 1s;
+    z-index: 10;
     form {
       margin: 12px;
       display: flex;
@@ -239,6 +241,32 @@ const EditMoodStyled = styled.div`
         margin: 5px;
         color: red;
         font-size: 14px;
+      }
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .isClose {
+      height: 200px;
+      width: 330px;
+
+      form {
+        h3 {
+          width: 100%;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .isOpen {
+      height: 200px;
+      width: 330px;
+
+      form {
+        h3 {
+          width: 100%;
+          font-size: 16px;
+        }
       }
     }
   }

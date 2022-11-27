@@ -25,7 +25,7 @@ const MoodWindowStyled = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background-color: ${themeColors.primaryColor};
     z-index: 10;
@@ -38,7 +38,7 @@ const MoodWindowStyled = styled.div`
     position: absolute;
     top: -1500px;
     left: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background-color: ${themeColors.primaryColor};
     z-index: 10;
@@ -46,6 +46,20 @@ const MoodWindowStyled = styled.div`
     transition: 2s;
     display: flex;
     flex-direction: row;
+  }
+
+  @media (max-width: 1080px) {
+    .windowOpen {
+      flex-direction: column;
+      transition: 2.5s;
+    }
+
+    .windowClose {
+      flex-direction: column;
+      top: -1800px;
+      transition: 2.5s;
+      opacity: 0.8;
+    }
   }
 `;
 

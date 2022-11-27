@@ -112,6 +112,21 @@ const ListMyMoodStyled = styled.div`
     border-radius: 50%;
     cursor: pointer;
   }
+
+  @media (max-width: 1080px) {
+    width: 100vw;
+    height: 45vh;
+
+    .divMood {
+      margin: 15px 10px 0 10px;
+      border-radius: 20px;
+
+      h3 {
+        font-size: 18px;
+        width: 100%;
+      }
+    }
+  }
 `;
 
 export default ListMyMood;

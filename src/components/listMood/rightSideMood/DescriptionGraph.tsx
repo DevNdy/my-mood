@@ -50,6 +50,17 @@ const DescriptionGraphStyled = styled.div`
       font-size: 15px;
     }
   }
+
+  @media (max-width: 1080px) {
+    margin-top: 100px;
+    p {
+      width: 90vw;
+    }
+
+    .levelMood {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 export default DescriptionGraph;

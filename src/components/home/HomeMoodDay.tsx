@@ -90,6 +90,23 @@ const HomeMoodDayStyled = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 1080px) {
+    h3 {
+      font-size: 40px;
+    }
+
+    .classNameIcon {
+      i {
+        font-size: 27px;
+        margin-left: 17px;
+      }
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
 `;
 
 export default HomeMoodDay;
