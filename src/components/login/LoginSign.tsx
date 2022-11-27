@@ -80,7 +80,7 @@ const LoginSignStyled = styled.div`
 
     .identifiant {
       position: static;
-      margin-top: 50px;
+      margin-top: 40px;
     }
   }
 `;

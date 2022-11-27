@@ -93,7 +93,6 @@ const RightSideMoodStyled = styled.div`
   background-color: ${themeColors.primaryColor};
 
   .graph {
-    min-height: 350px;
     width: 45vw;
     padding: 10px;
     display: flex;
@@ -108,9 +107,10 @@ const RightSideMoodStyled = styled.div`
     width: 100vw;
 
     .graph {
-      margin-top: 70px;
+      margin: 70px 5px 0 5px;
+      min-height: 340px;
+      width: 630px;
       transform: rotate(90deg);
-      width: 600px;
     }
   }
 `;

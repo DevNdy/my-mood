@@ -64,8 +64,13 @@ const HomePageStyled = styled.div`
   }
 
   @media (max-width: 1080px) {
+    min-height: 90vh;
     .btnList {
       top: 20px;
+    }
+
+    .social {
+      bottom: 20px;
     }
   }
 `;

@@ -107,7 +107,7 @@ const SignUpStyled = styled.form`
   }
 
   @media (max-width: 1080px) {
-    margin-top: 40px;
+    margin-top: 15px;
     align-items: center;
     height: 270px;
   }
