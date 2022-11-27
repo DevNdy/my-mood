@@ -84,7 +84,7 @@ const RightSideMood = () => {
 };
 
 const RightSideMoodStyled = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 50vw;
   display: flex;
   flex-direction: column;
@@ -102,6 +102,16 @@ const RightSideMoodStyled = styled.div`
     justify-content: center;
     background-color: ${themeColors.fond};
     border-radius: 30px;
+  }
+
+  @media (max-width: 1080px) {
+    width: 100vw;
+
+    .graph {
+      margin-top: 70px;
+      transform: rotate(90deg);
+      width: 600px;
+    }
   }
 `;
 
