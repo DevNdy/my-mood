@@ -76,6 +76,12 @@ const LoginSignStyled = styled.div`
 
   @media (max-width: 1080px) {
     width: 100vw;
+    justify-content: flex-start;
+
+    .identifiant {
+      position: static;
+      margin-top: 50px;
+    }
   }
 `;
 

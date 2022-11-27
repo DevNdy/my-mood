@@ -117,6 +117,12 @@ const HomeDescriptionMoodStyled = styled.form`
     font-size: 17px;
     color: #f15304;
   }
+
+  @media (max-width: 1080px) {
+    p {
+      font-size: 15px;
+    }
+  }
 `;
 
 export default HomeDescriptionMood;

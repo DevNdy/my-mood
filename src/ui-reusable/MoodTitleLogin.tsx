@@ -19,6 +19,10 @@ const MoodTitleLoginStyled = styled.h1`
     font-family: "Rubik Microbe", cursive;
     font-size: 75px;
   }
+
+  @media (max-width: 1080px) {
+    margin-top: 70px;
+  }
 `;
 
 export default MoodTitleLogin;
