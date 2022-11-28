@@ -21,7 +21,8 @@ const RightSideMood = () => {
           data={{
             labels: dataMood
               .filter((f: any) => f.email === currentUser.email)
-              .map((e: any) => e.date),
+              .map((e: any) => e.date)
+              .reverse(),
             datasets: [
               {
                 data: dataMood
