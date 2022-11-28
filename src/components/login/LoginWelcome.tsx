@@ -9,7 +9,7 @@ const LoginWelcome = () => {
   return (
     <LoginWelcomeStyled>
       <MoodTitleLogin />
-      <p>Décrivez chaques jours votre humeur, voyez au fil du temps votre état mental...</p>
+      <p>Décrivez chaque jour votre humeur, voyez au fil du temps votre état mental...</p>
       <LoginIcons />
       <div className="networks">
         <SocialNetworks />
