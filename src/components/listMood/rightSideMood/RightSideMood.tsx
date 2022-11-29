@@ -27,16 +27,19 @@ const RightSideMood = () => {
               {
                 data: dataMood
                   .filter((f: any) => f.email === currentUser.email)
-                  .map((e: any) => e.iconNbr),
+                  .map((e: any) => e.iconNbr)
+                  .reverse(),
                 borderColor: "#d3d8d4",
                 backgroundColor: dataMood
                   .filter((f: any) => f.email === currentUser.email)
-                  .map((e: any) => [e.color]),
+                  .map((e: any) => [e.color])
+                  .reverse(),
                 hoverBackgroundColor: "black",
                 hoverBorderColor: "white",
                 pointBorderColor: dataMood
                   .filter((f: any) => f.email === currentUser.email)
-                  .map((e: any) => [e.color]),
+                  .map((e: any) => [e.color])
+                  .reverse(),
                 pointBorderWidth: 7,
               },
             ],
